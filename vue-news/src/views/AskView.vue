@@ -1,15 +1,25 @@
 <template>
-  <div>
-    ask
-  </div>
+  <div>ask</div>
 </template>
 
 <script>
-export default {
+import { fetchAskList } from "../api/index.js";
 
-}
+export default {
+  name: "AskView",
+  data() {
+    return {
+      ask: [],
+    };
+  },
+  created() {
+    fetchAskList()
+      .then((response) => {
+        this.ask = response.data;
+      })
+      .catch((error) => console.log(error));
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
